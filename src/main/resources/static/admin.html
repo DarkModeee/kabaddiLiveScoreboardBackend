@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs"></script>
+    <script src="script.js"></script> <!-- Link to the external JS file -->
+</head>
+<body>
+<h1>Admin Panel</h1>
+<label>Team A Name: <input type="text" id="team-a-name"></label>
+<label>Team B Name: <input type="text" id="team-b-name"></label>
+<button onclick="updateMatch()">Update Match</button>
+<h2>Scores</h2>
+<button onclick="incrementScore('A')">+1 Team A</button>
+<button onclick="incrementScore('B')">+1 Team B</button>
+<h3>Live Scores</h3>
+<p>Team A: <span id="team-a-score">0</span></p>
+<p>Team B: <span id="team-b-score">0</span></p>
+</body>
+</html>
