@@ -13,7 +13,6 @@ public class MatchService {
     @Autowired
     private MatchRepository matchRepository;
 
-
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
 
@@ -27,8 +26,10 @@ public class MatchService {
 
     public void setTeamNames(String teamAName, String teamBName) {
         Match match = getActiveMatch();
-        match.getTeamA().setName(teamAName);
-        match.getTeamB().setName(teamBName);
+        match.setTeamAName(teamAName);
+        match.setTeamBName(teamBName);
+        match.setTeamAScore(0); // Reset scores
+        match.setTeamBScore(0); // Reset scores
         matchRepository.save(match);
         broadcastMatchUpdate(match);
     }
@@ -36,9 +37,9 @@ public class MatchService {
     public void updateScore(String team, int score) {
         Match match = getActiveMatch();
         if (team.equalsIgnoreCase("teamA")) {
-            match.getTeamA().setScore(score);
+            match.setTeamAScore(score);
         } else if (team.equalsIgnoreCase("teamB")) {
-            match.getTeamB().setScore(score);
+            match.setTeamBScore(score);
         } else {
             throw new IllegalArgumentException("Invalid team name");
         }
@@ -54,26 +55,23 @@ public class MatchService {
     }
 
     public void broadcastMatchUpdate(Match match) {
-        // Send match updates to clients via WebSocket
         messagingTemplate.convertAndSend("/topic/match-updates", new MatchDTO(
-                match.getTeamA().getName(),
-                match.getTeamA().getScore(),
-                match.getTeamB().getName(),
-                match.getTeamB().getScore(),
+                match.getTeamAName(),
+                match.getTeamAScore(),
+                match.getTeamBName(),
+                match.getTeamBScore(),
                 match.getTimer()
         ));
     }
 
     public MatchDTO getMatchDetails(Long matchId) {
-        Match match = getActiveMatch(); // Retrieve match using matchId
+        Match match = getActiveMatch();
         return new MatchDTO(
-                match.getTeamA().getName(),
-                match.getTeamA().getScore(),
-                match.getTeamB().getName(),
-                match.getTeamB().getScore(),
+                match.getTeamAName(),
+                match.getTeamAScore(),
+                match.getTeamBName(),
+                match.getTeamBScore(),
                 match.getTimer()
         );
     }
 }
-
-

@@ -1,7 +1,5 @@
 package com.kabaddiLiveScoreBoard.KabaddiLiveScoreBoard.DTO;
 
-
-
 public class MatchDTO {
 
     private String teamAName;
@@ -59,7 +57,4 @@ public class MatchDTO {
     public void setTimer(int timer) {
         this.timer = timer;
     }
-
-
 }
-

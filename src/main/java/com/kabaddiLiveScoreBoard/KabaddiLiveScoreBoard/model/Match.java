@@ -1,6 +1,7 @@
 package com.kabaddiLiveScoreBoard.KabaddiLiveScoreBoard.model;
 
 import jakarta.persistence.*;
+
 @Entity
 @Table(name = "match_game")
 public class Match {
@@ -11,12 +12,11 @@ public class Match {
 
     private int timer; // Timer in seconds
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private TeamsDetails teamA;
+    private String teamAName;
+    private int teamAScore;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private TeamsDetails teamB;
-
+    private String teamBName;
+    private int teamBScore;
 
     private Boolean active;
 
@@ -37,21 +37,43 @@ public class Match {
         this.timer = timer;
     }
 
-    public TeamsDetails getTeamA() {
-        return teamA;
+    public String getTeamAName() {
+        return teamAName;
     }
 
-    public void setTeamA(TeamsDetails teamA) {
-        this.teamA = teamA;
+    public void setTeamAName(String teamAName) {
+        this.teamAName = teamAName;
     }
 
-    public TeamsDetails getTeamB() {
-        return teamB;
+    public int getTeamAScore() {
+        return teamAScore;
     }
 
-    public void setTeamB(TeamsDetails teamB) {
-        this.teamB = teamB;
+    public void setTeamAScore(int teamAScore) {
+        this.teamAScore = teamAScore;
     }
 
+    public String getTeamBName() {
+        return teamBName;
+    }
 
+    public void setTeamBName(String teamBName) {
+        this.teamBName = teamBName;
+    }
+
+    public int getTeamBScore() {
+        return teamBScore;
+    }
+
+    public void setTeamBScore(int teamBScore) {
+        this.teamBScore = teamBScore;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }

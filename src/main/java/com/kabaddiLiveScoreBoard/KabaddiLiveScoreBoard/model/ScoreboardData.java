@@ -28,7 +28,7 @@ public class ScoreboardData {
     }
 
     public void setScores(Map<String, Integer> scores) {
-        this.scores = (scores != null) ? new HashMap<>(scores) : new HashMap<>();
+        this.scores = scores;
     }
 
     public Map<String, String> getTeams() {
@@ -36,7 +36,7 @@ public class ScoreboardData {
     }
 
     public void setTeams(Map<String, String> teams) {
-        this.teams = (teams != null) ? new HashMap<>(teams) : new HashMap<>();
+        this.teams = teams;
     }
 
     public Map<String, boolean[]> getPlayers() {
@@ -44,7 +44,7 @@ public class ScoreboardData {
     }
 
     public void setPlayers(Map<String, boolean[]> players) {
-        this.players = (players != null) ? new HashMap<>(players) : new HashMap<>();
+        this.players = players;
     }
 
     /**
