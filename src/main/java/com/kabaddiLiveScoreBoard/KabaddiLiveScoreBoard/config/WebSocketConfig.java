@@ -27,7 +27,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/scoreboard-websocket")
-                .setAllowedOrigins("wondrous-tartufo-db985a.netlify.app") // Allow React frontend
+                .setAllowedOrigins("https://wondrous-tartufo-db985a.netlify.app") // Allow React frontend
                 .withSockJS(); // Enable SockJS fallback for clients that don’t support WebSocket
     }
 }
